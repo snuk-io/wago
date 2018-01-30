@@ -63,7 +63,7 @@ static void modifyPABforEffect(void)
 // -------------------------------------------------------------------------------
 int KbusOpen()
 {
-  iFD = open("/dev/kbus", O_WRONLY);
+  iFD = open("/dev/kbus0", O_WRONLY);
 
   if(iFD < 0) {
     printf("KBUSAPI: Failed opening fifo for writing: %s", strerror(errno));
