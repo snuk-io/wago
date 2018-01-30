@@ -48,7 +48,10 @@ int bus_init_data(const char *fn)
 
 	f = fopen(fn,"r");
 	if (f == NULL)
+	{
+		KbusClose();
 		return -errno;
+	}
 	while(1) {
 		struct _bus_priv *dev;
 		char devtyp[BUS_TYPNAME_LEN],x3[3];
@@ -61,11 +64,15 @@ int bus_init_data(const char *fn)
 			break;
 		if (len != 11) {
 			if (len > 0)
+			{
+				KbusClose();
 				res = -EINVAL;
+			}
 			return res;
 		}
 		dev = malloc(sizeof(*dev));
 		if (dev == NULL) {
+			KbusClose();
 			res = -errno;
 			break;
 		}
