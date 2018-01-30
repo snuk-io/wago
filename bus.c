@@ -10,7 +10,7 @@
 
 extern char debug;
 
-// cat /proc/driver/kbus/config.csv 
+// cat /proc/driver/kbus/config.csv
 //line      ??      ??      rboff   woffset wwidth
 //  name        bits    roffset rwidth  wboff
 //1	750-4xx	0	8	n	0	0	0	0	0	8
@@ -179,7 +179,7 @@ int _bus_find_bit(unsigned short *_port,unsigned short *_offset, enum bus_type t
 		*_offset = offset & 7;
 		return 0;
 	}
-		
+
 	if(debug) printf("Check %d %d for %s FAILED: ID not found\n",port,offset,bus_typname(typ));
 	errno = ENODEV;
 	return -1;

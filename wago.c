@@ -41,7 +41,7 @@
 
 const char *MSG_HELLO = "* WAGO ready.\n";
 
-char debug = 
+char debug =
 #ifdef DEMO
 	1
 #else
@@ -136,7 +136,7 @@ static int report_bus(struct _bus *bus, void *priv)
 			j = bus_read_bit(bus->id,i);
 			evbuffer_add(out, (j < 0) ? "?" : j ? "1" : "0", 1);
 		}
-		
+
 		break;
 	case BUS_BITS_OUT:
 		evbuffer_add(out, " =>",3);
@@ -196,7 +196,7 @@ background(char * const args[])
 	dup2(fd, STDERR_FILENO);
 	if (fd > 2)
 		close(fd);
-	
+
 	execv("/proc/self/exe", args);
 	_exit(1);
 }
@@ -234,7 +234,7 @@ main(int argc, char **argv)
 			{"port", 1, 0, 'p'},
 			{0, 0, 0, 0}
 		};
-		
+
 		/* Identify all  options */
 		*ap++ = "wagomon";
 		*ap++ = "-F";
@@ -580,7 +580,7 @@ parse_input(struct bufferevent *bev, const char *line)
 			evbuffer_add(out,"+OK\n",4);
 #endif
 		} else if (!line[1]) {
-			FILE *fd = bus_description(); 
+			FILE *fd = bus_description();
 			int len;
 			char fbuf[4096],*pbuf;
 			char cont = 0;

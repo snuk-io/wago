@@ -14,14 +14,14 @@
 // |  Mail: info@wago.com               |  Mail: support@wago.com                |
 // |  www : http://www.wago.com         |                                        |
 //  -----------------------------------------------------------------------------
-/// \file       wagoset.c       
+/// \file       wagoset.c
 /// \version    0.02
 /// \date       18-MAY-2006
 /// \author     Florian Reckmann
 ///
 /// \description :
 /// This programm set the configuration of the Fieldbus-Controller in the Flash
-/// The Flash is reading from the Bootloader if it start the Linux-Kernel 
+/// The Flash is reading from the Bootloader if it start the Linux-Kernel
 ///
 /// \par History:
 /// \history 01.12.2004  Init(LF)
@@ -45,9 +45,9 @@ int iFD = -1;
 
 #if 0 // not used
 static void modifyPABforEffect(void)
-{ 
+{
   pstPabOUT->us.Pab[0] = pstPabOUT->us.Pab[0] << 1;
-  if(pstPabOUT->us.Pab[0] > 0xFFF) pstPabOUT->us.Pab[0] = 1; 
+  if(pstPabOUT->us.Pab[0] > 0xFFF) pstPabOUT->us.Pab[0] = 1;
   return;
 }
 #endif
@@ -64,7 +64,7 @@ static void modifyPABforEffect(void)
 int KbusOpen()
 {
   iFD = open("/dev/kbus", O_WRONLY);
-  
+
   if(iFD < 0) {
     printf("KBUSAPI: Failed opening fifo for writing: %s", strerror(errno));
     return -errno;
@@ -82,7 +82,7 @@ int KbusUpdate()
 {
   int iBytes=0;
   int iTmp;
-  
+
   if(iFD < 0) return -EINVAL;
 
   iBytes = ioctl(iFD, IOCTL_KBUSUPDATE, &iTmp);
@@ -97,7 +97,7 @@ int KbusGetBinaryInputOffset()
 {
   int iBytes = 0;
   int iInputOffset = 0;
-  
+
   if(iFD < 0) return -EINVAL;
 
   iBytes = ioctl(iFD, IOCTL_GETBININPUTOFFSET, &iInputOffset);
@@ -112,7 +112,7 @@ int KbusGetBinaryOutputOffset()
 {
   int iBytes = 0;
   int iOutputOffset = 0;
-  
+
   if(iFD < 0) return -EINVAL;
 
   iBytes = ioctl(iFD, IOCTL_GETBINOUTPUTOFFSET, &iOutputOffset);
